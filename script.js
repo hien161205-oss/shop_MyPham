@@ -1,56 +1,51 @@
-let count = 0;
+```javascript
+const products = [
+{name:"Son đỏ", price:200000},
+{name:"Kem dưỡng", price:350000},
+{name:"Sữa rửa mặt", price:150000},
+{name:"Nước hoa", price:500000}
+];
 
-function add(){
-    count++;
-    document.getElementById("count").innerText = count;
+const cart = [];
+
+function render(){
+const list = document.getElementById("product-list");
+list.innerHTML="";
+
+products.forEach((p,i)=>{
+list.innerHTML += `
+<div class="product">
+<h4>${p.name}</h4>
+<p>${p.price}đ</p>
+<button onclick="addToCart(${i})">Thêm</button>
+</div>
+`;
+});
 }
 
-function showLogin(){
-    document.getElementById("login-popup").style.display="block";
+function addToCart(i){
+cart.push(products[i]);
+document.getElementById("cart-count").innerText = cart.length;
 }
 
-function login(){
-    let user = document.getElementById("username").value;
-    let pass = document.getElementById("password").value;
-
-    if(user=="admin" && pass=="123"){
-        localStorage.setItem("role","admin");
-        showUser("Admin", true);
-    }
-    else if(user=="user" && pass=="123"){
-        localStorage.setItem("role","user");
-        showUser("User", false);
-    }
-    else{
-        alert("Sai tài khoản");
-    }
+function openLogin(){
+document.getElementById("login-modal").style.display="block";
+}
+function closeLogin(){
+document.getElementById("login-modal").style.display="none";
 }
 
-function showUser(name, isAdmin){
-    document.getElementById("login-popup").style.display="none";
-
-    let adminBtn = "";
-    if(isAdmin){
-        adminBtn = "<button onclick='alert(\"Trang quản trị\")'>Quản lý</button>";
-    }
-
-    document.getElementById("user-box").innerHTML =
-        "Xin chào "+name+" "+adminBtn+
-        " <button onclick='logout()'>Đăng xuất</button>";
+function openCart(){
+const box = document.getElementById("cart-items");
+box.innerHTML="";
+cart.forEach(c=>{
+box.innerHTML += `<p>${c.name}</p>`;
+});
+document.getElementById("cart-modal").style.display="block";
+}
+function closeCart(){
+document.getElementById("cart-modal").style.display="none";
 }
 
-function logout(){
-    localStorage.removeItem("role");
-    location.reload();
-}
-
-window.onload = function(){
-    let role = localStorage.getItem("role");
-
-    if(role=="admin"){
-        showUser("Admin", true);
-    }
-    else if(role=="user"){
-        showUser("User", false);
-    }
-}
+render();
+```
