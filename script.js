@@ -1,4 +1,4 @@
-```javascript
+javascript
 const products = [
 {name:"Son đỏ", price:200000},
 {name:"Kem dưỡng", price:350000},
@@ -48,4 +48,4 @@ document.getElementById("cart-modal").style.display="none";
 }
 
 render();
-```
+
