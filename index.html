@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Beauty Shop</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="logo">Beauty Cosmetics</div>
+
+    <div class="user-box" id="user-box">
+        <button onclick="showLogin()">Đăng nhập</button>
+    </div>
+</header>
+
+<div class="login-popup" id="login-popup">
+    <input id="username" placeholder="Username">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="login()">Đăng nhập</button>
+</div>
+
+<section class="products">
+
+    <div class="product">
+        <img src="https://via.placeholder.com/150">
+        <h3>Son lì cao cấp</h3>
+        <p>250.000đ</p>
+        <button onclick="add()">Thêm vào giỏ</button>
+    </div>
+
+    <div class="product">
+        <img src="https://via.placeholder.com/150">
+        <h3>Kem dưỡng da</h3>
+        <p>320.000đ</p>
+        <button onclick="add()">Thêm vào giỏ</button>
+    </div>
+
+    <div class="product">
+        <img src="https://via.placeholder.com/150">
+        <h3>Phấn phủ</h3>
+        <p>280.000đ</p>
+        <button onclick="add()">Thêm vào giỏ</button>
+    </div>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>
