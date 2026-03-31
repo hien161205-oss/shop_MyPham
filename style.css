@@ -211,3 +211,18 @@ width:100%;
 height:180px;
 object-fit:cover;
 }
+.payment{
+display:grid;
+grid-template-columns: repeat(3, 1fr); /* 3 logo mỗi dòng */
+gap:8px;
+max-width:220px;
+}
+
+.payment img{
+width:60px;
+height:30px;
+object-fit:contain;
+background:#fff;
+padding:3px;
+border-radius:4px;
+}

@@ -37,15 +37,15 @@
 <!-- banner -->
 <div class="banner">
 <div class="menu">
-<span>TẤT CẢ SẢN PHẨM</span>
-<span>Tẩy trang</span>
-<span>Sữa rửa mặt</span>
-<span>Serum dưỡng da</span>
-<span>Kem dưỡng</span>
-<span>Son</span>
-<span>Mặt nạ</span>
-<span>Chống nắng</span>
-<span>Dưỡng thể</span>
+<span onclick="filterProduct('all')">Tất cả sản phấm</span>
+<span onclick="filterProduct('taytrang')">Tẩy trang</span>
+<span onclick="filterProduct('suaruamat')">Sữa rửa mặt</span>
+<span onclick="filterProduct('serum')">Serum dưỡng da</span>
+<span onclick="filterProduct('kemduong')">Kem dưỡng</span>
+<span onclick="filterProduct('son')">Son</span>
+<span onclick="filterProduct('matna')">Mặt nạ</span>
+<span onclick="filterProduct('chongnang')">Chống nắng</span>
+<span onclick="filterProduct('duongthe')">Dưỡng thể</span>
 </div>
 </div>
 
@@ -95,16 +95,27 @@
 
 <div class="footer-col">
 <h4>HỖ TRỢ KHÁCH HÀNG</h4>
-<p>Hướng dẫn mua hàng</p>
-<p>Phương thức thanh toán</p>
-<p>Chính sách giao hàng</p>
-<p>Chính sách đổi trả</p>
-<p>Chính sách bảo mật</p>
+<p onclick="showSupport('buy')">Hướng dẫn mua hàng</p>
+<p onclick="showSupport('pay')">Phương thức thanh toán</p>
+<p onclick="showSupport('ship')">Chính sách giao hàng</p>
+<p onclick="showSupport('return')">Chính sách đổi trả</p>
+<p onclick="showSupport('privacy')">Chính sách bảo mật</p>
 </div>
 
 <div class="footer-col">
 <h4>GIỜ MỞ CỬA</h4>
 <p>Từ 8:00 - 22:00 tất cả các ngày trong tuần</p>
+<h4 style="margin-top:20px;">HỖ TRỢ THANH TOÁN</h4>
+<div class="payment">
+<img src="https://th.bing.com/th/id/R.e5eac1518f595f59ea6290eec36ed026?rik=c1gWlblTdQDfKA&riu=http%3a%2f%2fwww.underconsideration.com%2fbrandnew%2farchives%2fvisa_2014_logo_detail.png&ehk=Szc%2b3fxSpj3Yt57FoNkPL8lQO3Jbkzh9oS%2flMVy0voY%3d&risl=&pid=ImgRaw&r=0">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg">
+<img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-MoMo-Square-1024x1024.png">
+
+<img src="https://cdn.moveek.com/bundles/ornweb/partners/zalopay-logo.png">
+<img src="https://khoahocsinhvien.com/wp-content/uploads/2021/11/Logo-VNPAY-QR.png">
+
+</div>
 </div>
 
 <div class="footer-col">
@@ -129,6 +140,13 @@ COPYRIGHTS © 2026 BEAUTY SHOP
 </div>
 
 </footer>
+<div id="support-box" class="modal">
+<div class="modal-content">
+<h3 id="support-title"></h3>
+<div id="support-content"></div>
+<button onclick="closeSupport()">Đóng</button>
+</div>
+</div>
 </body>
 </html>
 
