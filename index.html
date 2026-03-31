@@ -6,17 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Beauty Shop</title>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
 
 <!-- top -->
 <div class="top-bar">
-<div>
-<span>Thông báo</span>
-<span>Hỗ trợ</span>
-<span>Tiếng Việt</span>
-</div>
 <div>
 <span onclick="openLogin()">Đăng nhập</span>
 <span>Đăng ký</span>
@@ -26,35 +22,38 @@
 <!-- header -->
 <div class="header">
 <div class="logo">Beauty Shop</div>
-
 <div class="search">
 <input type="text" placeholder="Tìm sản phẩm...">
 <button>Tìm</button>
 </div>
+
 
 <div class="cart" onclick="openCart()">
 🛒 <span id="cart-count">0</span>
 </div>
 </div>
 
+
 <!-- banner -->
 <div class="banner">
-Chào mừng đến Beauty Shop
+<div class="menu">
+<span>TẤT CẢ SẢN PHẨM</span>
+<span>Tẩy trang</span>
+<span>Sữa rửa mặt</span>
+<span>Serum dưỡng da</span>
+<span>Kem dưỡng</span>
+<span>Son</span>
+<span>Mặt nạ</span>
+<span>Chống nắng</span>
+<span>Dưỡng thể</span>
+</div>
 </div>
 
 <div class="main">
 <!-- sidebar -->
-<div class="sidebar">
-<h3>Danh mục</h3>
-<ul>
-<li>Son môi</li>
-<li>Kem dưỡng</li>
-<li>Sữa rửa mặt</li>
-<li>Nước hoa</li>
-</ul>
-</div>
 
-<!-- products -->
+
+<!-- content -->
 <div class="content">
 <h2>Sản phẩm</h2>
 <div class="products" id="product-list"></div>
@@ -82,6 +81,54 @@ Chào mừng đến Beauty Shop
 </div>
 
 <script src="script.js"></script>
+<footer class="footer">
+<div class="footer-top">
+
+<div class="footer-col">
+<h4>CÔNG TY CỔ PHẦN THƯƠNG MẠI DỊCH VỤ Q&H</h4>
+<p>16/13 Đà Nẵng, Hải Phòng</p>
+<p>Quận Ngô Quyền, TP Hải Phòng</p>
+<p>Mã số thuế: 123456789</p>
+<p>SĐT: 0908070678</p>
+<p>Email: q&h@gmail.com</p>
+</div>
+
+<div class="footer-col">
+<h4>HỖ TRỢ KHÁCH HÀNG</h4>
+<p>Hướng dẫn mua hàng</p>
+<p>Phương thức thanh toán</p>
+<p>Chính sách giao hàng</p>
+<p>Chính sách đổi trả</p>
+<p>Chính sách bảo mật</p>
+</div>
+
+<div class="footer-col">
+<h4>GIỜ MỞ CỬA</h4>
+<p>Từ 8:00 - 22:00 tất cả các ngày trong tuần</p>
+</div>
+
+<div class="footer-col">
+<h4>ĐĂNG KÝ NHẬN TIN</h4>
+<input placeholder="Nhập email của bạn">
+<button>➤</button>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+<div class="social">
+<i class="fab fa-facebook-f"></i>
+<i class="fab fa-instagram"></i>
+<i class="fab fa-youtube"></i>
+<i class="fab fa-tiktok"></i>
+</div>
+
+<div class="copy">
+COPYRIGHTS © 2026 BEAUTY SHOP
+</div>
+</div>
+
+</footer>
 </body>
 </html>
 
