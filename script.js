@@ -13,6 +13,18 @@ image: "https://www.viuviu.vn/wp-content/uploads/2023/10/sua-rua-mat-simple-7.jp
 category:"suaruamat"
 },
 {
+name: "Nước tẩy trang sen Hậu Giang 500ml",
+price: 400000,
+image: "https://image.cocoonvietnam.com/uploads/Avatar_Website_Nuoc_tay_trang_sen_Artboard_7_copy_ac0bf66b46.jpg",
+category:"nuoctaytrang"
+},
+{
+name: "Kem Chống Nắng d'Alba Nâng Tông Tím Hiệu Chỉnh Sắc Da 50ml",
+price: 450000,
+image: "https://www.hangngoainhap.com.vn/images/202406/goods_img/4300-p2-1719050018.jpg",
+category :"kemchongnang"
+},
+{
 name: "Kem dưỡng ẩm da Nivea Creme dưỡng ẩm sâu, giữ da mềm mịn (30ml)",
 price: 50000,
 image: "https://cdn.nhathuoclongchau.com.vn/unsafe/640x0/filters:quality(90):format(webp)/00022125_kem_ne_nivea_creme_beiersdorf_ag_hamburg_germany_30ml_1803_6095_large_a57108f20a.jpg",
