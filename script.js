@@ -16,7 +16,7 @@ category:"suaruamat"
 name: "Nước tẩy trang sen Hậu Giang 500ml",
 price: 400000,
 image: "https://image.cocoonvietnam.com/uploads/Avatar_Website_Nuoc_tay_trang_sen_Artboard_7_copy_ac0bf66b46.jpg",
-category:"nuoctaytrang"
+category:"taytrang"
 },
 {
 name: "Kem Chống Nắng d'Alba Nâng Tông Tím Hiệu Chỉnh Sắc Da 50ml",
@@ -41,6 +41,54 @@ name: "Kem Dưỡng Torriden Làm Dịu Mát, Dưỡng Ẩm, Sáng Bóng Da 100m
 price: 300000,
 image: "https://down-vn.img.susercontent.com/file/sg-11134208-7rcf5-lrqp4f0xwqrsd4",
 category:"kemduong"
+},
+{
+name: "Kem dưỡng ban đêm dưỡng sáng mịn & mờ thâm nám L'Oreal Paris Glycolic (AHA) Bright [Glycolic+ Niacinamide] + 50ml",
+price: 320000,
+image: "https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m95wckgazfjid4.webp",
+category:"kemduong"
+},
+{
+name: "[CHỐNG NẮNG WATERGEL MỚI] Chống Nắng Phổ Rộng Thoáng Da, Kháng Mọi Tác Động UV Defender SPF 50+ PA++++ Loreal Paris",
+price: 350000,
+image: "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mfkoe37d3rpmf3.webp",
+category:"chongnang"
+},
+{
+name: "Son Tint Romand Juicy Lasting Tint màu 25 Bare Grape Hồng baby nude",
+price: 259000,
+image: "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mhuhbum5a0w39d.webp",
+category:"son"
+},
+{
+name: "Son Dưỡng Astrid Tái Tạo Môi Mỡ Hươu",
+price: 59000,
+image: "https://down-vn.img.susercontent.com/file/sg-11134253-824iw-mejah87odl38f3.webp",
+category:"son"
+},
+{
+name: "Son dưỡng môi A'Pieu Honey & Milk Lip Oil 5g chiết xuất từ mật ong và sữa giúp dưỡng ẩm môi sâu",
+price: 69000,
+image: "https://down-vn.img.susercontent.com/file/sg-11134253-8261e-mjteo9cel1c017@resize_w900_nl.webp",
+category:"son"
+},
+{
+name: "[Rom&nd] [Solunar Edition] Son Tint lì Romand Juicy Lasting Tint 5.5g",
+price: 169000,
+image: "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mgdgr8hes7pnaf.webp",
+category:"son"
+},
+{
+name: "[Rom&nd] Son Tint lì cho môi căng mọng THE JUICY LASTING TINT",
+price: 289000,
+image: "https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m8w4qhulb9tzf5.webp",
+category:"son"
+},
+{
+name: "Sữa rửa mặt làm sạch sâu và sáng da L'Oreal Paris Glycolic (AHA) Bright Glowing Daily [Glycolic+ Niacinamide] 100ml",
+price: 135000,
+image: "https://down-vn.img.susercontent.com/file/vn-11134201-7ras8-maupowpour9oe1.webp",
+category:"suaruamat"
 }
 ];
 
@@ -53,11 +101,10 @@ box.innerHTML="";
 
 list.forEach((p,i)=>{
 box.innerHTML += `
-<div class="product">
+<div class="product" onclick="viewDetail(${i})">
 <img src="${p.image}">
 <h4>${p.name}</h4>
 <p>${p.price}đ</p>
-<button onclick="addToCart(${i})">Thêm</button>
 </div>
 `;
 });
@@ -73,10 +120,18 @@ const filtered = products.filter(p => p.category === type);
 render(filtered);
 }
 
-function addToCart(i){
-cart.push(products[i]);
-document.getElementById("cart-count").innerText = cart.length;
+function addToCart(){
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let found = cart.find(item => item.name === product.name);
+if(found){
+found.qty += 1;
+}else{
+cart.push({...product, qty:1});
 }
+localStorage.setItem("cart", JSON.stringify(cart));
+updateCartCount();
+}
+
 
 function openLogin(){
 document.getElementById("login-modal").style.display="block";
@@ -103,36 +158,25 @@ render();
 function showSupport(type){
 const title = document.getElementById("support-title");
 const content = document.getElementById("support-content");
-
-if(type==="buy"){
-title.innerText="Hướng dẫn mua hàng";
-content.innerHTML="Bước 1: Chọn sản phẩm <br> Bước 2: Thêm vào giỏ <br> Bước 3: Thanh toán";
 }
-
-if(type==="pay"){
-title.innerText="Phương thức thanh toán";
-content.innerHTML="Thanh toán COD, VNPay, ZaloPay...";
+function viewDetail(index){
+localStorage.setItem("product", JSON.stringify(products[index]));
+window.location.href = "spchitiet.html";
 }
-
-if(type==="ship"){
-title.innerText="Chính sách giao hàng";
-content.innerHTML="Giao hàng toàn quốc 2-5 ngày.";
+function updateCartCount(){
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+const count = document.getElementById("cart-count");
+if(count){
+count.innerText = cart.length;
 }
-
-if(type==="return"){
-title.innerText="Chính sách đổi trả";
-content.innerHTML="Đổi trả trong 7 ngày nếu lỗi.";
 }
+window.onload = updateCartCount;
 
-if(type==="privacy"){
-title.innerText="Chính sách bảo mật";
-content.innerHTML="Chúng tôi cam kết bảo mật thông tin khách hàng.";
+function updateCartCount(){
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+const count = document.getElementById("cart-count");
+
+if(count){
+count.innerText = cart.reduce((sum,item)=> sum + (item.qty || 1),0);
 }
-
-document.getElementById("support-box").style.display="block";
 }
-
-function closeSupport(){
-document.getElementById("support-box").style.display="none";
-}
-

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Chi tiết sản phẩm</title>
+<link rel="stylesheet" href="style.css">
+<style>
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#f5f5f5;
+}
+
+/* HEADER giống trang chủ */
+.top-header{
+background:#6fb3da;
+padding:15px 30px;
+display:flex;
+align-items:center;
+color:white;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+margin-right:30px;
+}
+
+.search-box{
+flex:1;
+display:flex;
+}
+
+.search-box input{
+flex:1;
+padding:10px;
+border:none;
+}
+
+.search-box button{
+background:black;
+color:white;
+border:none;
+padding:10px 20px;
+}
+
+.user{
+margin-left:20px;
+}
+
+.menu{
+background:#eee;
+padding:10px 30px;
+display:flex;
+gap:25px;
+border-bottom:1px solid #ddd;
+}
+
+.menu a{
+text-decoration:none;
+color:black;
+}
+
+/* CHI TIẾT */
+.container{
+width:90%;
+margin:20px auto;
+background:white;
+padding:20px;
+}
+
+.product-detail{
+display:flex;
+gap:40px;
+}
+
+.left{
+width:40%;
+}
+
+.main-img{
+width:100%;
+}
+
+.thumb{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+
+.thumb img{
+width:50px;
+height:50px;
+object-fit:cover;
+border:1px solid #ddd;
+cursor:pointer;
+}
+
+.right{
+width:60%;
+}
+
+.title{
+font-size:22px;
+font-weight:bold;
+}
+
+.price{
+font-size:24px;
+margin:15px 0;
+color:black;
+}
+
+.buttons{
+display:flex;
+gap:15px;
+margin-top:20px;
+}
+
+.add{
+border:1px solid #6fb3da;
+background:white;
+color:#6fb3da;
+padding:10px 20px;
+}
+
+.buy{
+background:#6fb3da;
+color:white;
+border:none;
+padding:10px 20px;
+}
+</style>
+</style>
+
+</head>
+
+<body>
+
+<!-- top -->
+<div class="top-bar">
+<div>
+<span>Đăng nhập</span>
+<span>Đăng ký</span>
+</div>
+</div>
+
+<!-- header -->
+<div class="header">
+<div class="logo">Beauty Shop</div>
+
+<div class="search">
+<input type="text" placeholder="Tìm sản phẩm...">
+<button>Tìm</button>
+</div>
+
+<div class="cart" onclick="location.href='giohang.html'">
+🛒 <span id="cart-count">0</span>
+</div>
+</div>
+
+<!-- banner -->
+<div class="banner">
+<div class="menu">
+<span>Tất cả sản phẩm</span>
+<span>Tẩy trang</span>
+<span>Sữa rửa mặt</span>
+<span>Serum dưỡng da</span>
+<span>Kem dưỡng</span>
+<span>Son</span>
+<span>Mặt nạ</span>
+<span>Chống nắng</span>
+<span>Dưỡng thể</span>
+</div>
+<div class="container">
+<div id="detail"></div>
+</div>
+</div>
+<script>
+const product = JSON.parse(localStorage.getItem("product"));
+
+document.getElementById("detail").innerHTML = `
+<div class="product-detail">
+
+<div class="left">
+<img src="${product.image}" class="main-img" id="mainImg">
+
+<div class="thumb">
+<img src="${product.image}" onclick="changeImg(this.src)">
+<img src="${product.image}" onclick="changeImg(this.src)">
+<img src="${product.image}" onclick="changeImg(this.src)">
+</div>
+</div>
+
+<div class="right">
+<div class="title">${product.name}</div>
+
+<div class="price">${product.price}đ</div>
+
+<div class="desc">
+${product.description || "Mô tả sản phẩm đang cập nhật..."}
+</div>
+
+<div class="buttons">
+<button class="add" onclick="addToCart()">Thêm vào giỏ hàng</button>
+<button class="buy" onclick="buyNow()">Mua ngay</button>
+</div>
+
+</div>
+
+</div>
+`;
+
+function changeImg(src){
+document.getElementById("mainImg").src = src;
+}
+
+function addToCart(){
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let found = cart.find(item => item.name === product.name);
+if(found){
+found.qty += 1;
+}else{
+cart.push({...product, qty:1});
+}
+
+localStorage.setItem("cart", JSON.stringify(cart));
+updateCartCount();
+
+alert("Đã thêm vào giỏ hàng");
+}
+function buyNow(){
+alert("Chức năng mua ngay sẽ làm sau");
+}
+function updateCartCount(){
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+const count = document.getElementById("cart-count");
+
+if(count){
+count.innerText = cart.reduce((sum,item)=> sum + (item.qty || 1),0);
+}
+}
+updateCartCount();
+</script>
+
+</body>
+</html>

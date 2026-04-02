@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Giỏ hàng</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+.cart-container{
+width:90%;
+margin:20px auto;
+}
+
+.cart-header,
+.cart-item{
+display:grid;
+grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+align-items:center;
+padding:10px;
+border-bottom:1px solid #ddd;
+}
+
+.cart-header{
+font-weight:bold;
+background:#f5f5f5;
+}
+
+.cart-item img{
+vertical-align:middle;
+margin-right:10px;
+}
+
+.qty{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.qty button{
+width:28px;
+height:28px;
+border:1px solid #ddd;
+background:white;
+cursor:pointer;
+}
+
+.qty span{
+width:30px;
+text-align:center;
+display:inline-block;
+}
+
+.cart-footer{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:20px;
+}
+
+.buy-btn{
+background:#6fb3da;
+color:white;
+border:none;
+padding:10px 25px;
+cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<header class="header">
+<div class="logo">Beauty Shop</div>
+</header>
+
+<div class="cart-container">
+
+<div class="cart-header">
+<span>Sản phẩm</span>
+<span>Đơn giá</span>
+<span>Số lượng</span>
+<span>Số tiền</span>
+<span>Thao tác</span>
+</div>
+
+<div id="cart-items"></div>
+
+<div class="cart-footer">
+<div class="total">
+Tổng cộng: <span id="total-price">0đ</span>
+</div>
+<button class="buy-btn">Mua hàng</button>
+</div>
+
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+const cartItems = document.getElementById("cart-items");
+const totalPrice = document.getElementById("total-price");
+
+function renderCart(){
+
+cartItems.innerHTML="";
+let total = 0;
+
+if(cart.length === 0){
+cartItems.innerHTML = "<p>Giỏ hàng trống</p>";
+return;
+}
+
+cart.forEach((item,index)=>{
+
+if(!item.qty) item.qty = 1;
+
+let itemTotal = item.price * item.qty;
+total += itemTotal;
+
+cartItems.innerHTML += `
+<div class="cart-item">
+
+<div>
+<img src="${item.image}" width="70">
+${item.name}
+</div>
+
+<div>${item.price}đ</div>
+
+<div class="qty">
+<button onclick="decrease(${index})">-</button>
+<span>${item.qty}</span>
+<button onclick="increase(${index})">+</button>
+</div>
+
+<div>${itemTotal}đ</div>
+
+<div>
+<button onclick="removeItem(${index})">Xóa</button>
+</div>
+
+</div>
+`;
+});
+
+totalPrice.innerText = total + "đ";
+localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function increase(i){
+cart[i].qty++;
+renderCart();
+}
+
+function decrease(i){
+if(cart[i].qty > 1){
+cart[i].qty--;
+}else{
+cart.splice(i,1);
+}
+renderCart();
+}
+
+function removeItem(i){
+cart.splice(i,1);
+renderCart();
+}
+
+renderCart();
+</script>
+
+</body>
+</html>
